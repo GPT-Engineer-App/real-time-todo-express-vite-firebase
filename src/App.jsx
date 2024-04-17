@@ -7,6 +7,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState("");
   const [taskType, setTaskType] = useState("text");
+  const [category, setCategory] = useState("General");
 
   const handleAddTask = () => {
     if (input.trim() !== "" && taskType === "text") {
@@ -43,6 +44,11 @@ function App() {
           <option value="voice">Voice</option>
           <option value="image">Image</option>
         </select>
+        <select className="select select-bordered w-32" value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="General">General</option>
+          <option value="Work">Work</option>
+          <option value="Personal">Personal</option>
+        </select>
         {taskType === "text" && (
           <>
             <input type="text" className="input input-bordered w-full" placeholder="Add a new task" value={input} onChange={handleInputChange} onKeyPress={handleKeyPress} />
@@ -57,7 +63,9 @@ function App() {
       <ul className="menu bg-base-100 w-full p-2 rounded-box">
         {tasks.map((task, index) => (
           <li key={index} className="flex justify-between items-center">
-            <span>{task.type === "text" ? task.content : task.type === "voice" ? "Voice Note" : "Image Note"}</span>
+            <span>
+              {task.type === "text" ? task.content : task.type === "voice" ? "Voice Note" : "Image Note"} - {task.category || "General"}
+            </span>
             <button className="btn btn-ghost btn-circle" onClick={() => handleDeleteTask(index)}>
               <FaTrashAlt />
             </button>

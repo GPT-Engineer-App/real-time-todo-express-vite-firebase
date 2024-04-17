@@ -11,7 +11,7 @@ function VoiceRecorder({ onRecordComplete }) {
   const stopRecording = () => {
     console.log("Stop recording");
     setIsRecording(false);
-    onRecordComplete("Audio data blob");
+    onRecordComplete("https://example.com/audio.mp3");
   };
 
   return (
