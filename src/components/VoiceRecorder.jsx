@@ -16,9 +16,16 @@ function VoiceRecorder({ onRecordComplete }) {
 
   return (
     <div>
-      <button className="btn btn-secondary" onClick={isRecording ? stopRecording : startRecording}>
-        {isRecording ? "Stop Recording" : "Start Recording"}
-      </button>
+      <>
+        <button className="btn btn-secondary" onClick={isRecording ? stopRecording : startRecording}>
+          {isRecording ? "Stop Recording" : "Start Recording"}
+        </button>
+        {!isRecording && (
+          <audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" controls className="mt-2">
+            Your browser does not support the audio element.
+          </audio>
+        )}
+      </>
     </div>
   );
 }

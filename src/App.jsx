@@ -11,13 +11,13 @@ function App() {
 
   const handleAddTask = () => {
     if (input.trim() !== "" && taskType === "text") {
-      setTasks([...tasks, { type: "text", content: input.trim() }]);
+      setTasks([...tasks, { type: "text", content: input.trim(), category: category }]);
       setInput("");
     }
   };
 
   const handleRecordComplete = (audioData) => {
-    setTasks([...tasks, { type: "voice", content: audioData }]);
+    setTasks([...tasks, { type: "voice", content: audioData, category: category }]);
   };
 
   const handleDeleteTask = (index) => {
@@ -58,7 +58,7 @@ function App() {
           </>
         )}
         {taskType === "voice" && <VoiceRecorder onRecordComplete={handleRecordComplete} />}
-        {taskType === "image" && <ImageUploader onImageUpload={(imageUrl) => setTasks([...tasks, { type: "image", content: imageUrl }])} />}
+        {taskType === "image" && <ImageUploader onImageUpload={(imageUrl) => setTasks([...tasks, { type: "image", content: imageUrl, category: category }])} />}
       </div>
       <ul className="menu bg-base-100 w-full p-2 rounded-box">
         {tasks.map((task, index) => (
